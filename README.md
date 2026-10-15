@@ -267,49 +267,49 @@ JWT_SECRET=your_super_secret_key_here
 ## 🔌 API Reference
 
 ### Auth — `/api/auth`
-| Method | Endpoint | Description | Auth |
+| Method | Endpoint | Description | Access |
 |:---:|:---|:---|:---:|
-| `POST` | `/api/auth/register` | Register a new user account | ❌ |
-| `POST` | `/api/auth/login` | Login and receive JWT token | ❌ |
-| `GET` | `/api/auth/me` | Get the current authenticated user | ✅ |
-| `PUT` | `/api/auth/profile` | Update display name or avatar color | ✅ |
-| `POST` | `/api/auth/quick-switch` | Switch to a demo persona | ❌ |
+| `POST` | `/api/auth/register` | Register a new user account | 🌐 Public |
+| `POST` | `/api/auth/login` | Login and receive JWT token | 🌐 Public |
+| `GET` | `/api/auth/me` | Get the current authenticated user | 🔒 JWT Required |
+| `PUT` | `/api/auth/profile` | Update display name or avatar color | 🔒 JWT Required |
+| `POST` | `/api/auth/quick-switch` | Switch to a demo persona | 🌐 Public |
 
 ### Sessions — `/api/sessions`
-| Method | Endpoint | Description | Auth |
+| Method | Endpoint | Description | Access |
 |:---:|:---|:---|:---:|
-| `GET` | `/api/sessions` | List all sessions (active + past) | ❌ |
-| `POST` | `/api/sessions` | Create a new coding session | ✅ |
-| `GET` | `/api/sessions/:code` | Get session details, files, chats, invites | ❌ |
-| `POST` | `/api/sessions/:code/end` | End a session (host only) | ✅ |
-| `POST` | `/api/sessions/:code/lock` | Toggle session read-only lock | ✅ |
-| `POST` | `/api/sessions/:code/invite` | Send invitation by email | ✅ |
-| `GET` | `/api/sessions/my-invites` | Get pending invites for current user | ✅ |
-| `POST` | `/api/sessions/invites/:id/accept` | Accept a pending invite | ✅ |
-| `POST` | `/api/sessions/invites/:id/decline` | Decline a pending invite | ✅ |
+| `GET` | `/api/sessions` | List all sessions (active + past) | 🌐 Public |
+| `POST` | `/api/sessions` | Create a new coding session | 🔒 JWT Required |
+| `GET` | `/api/sessions/:code` | Get session details, files, chats, invites | 🌐 Public |
+| `POST` | `/api/sessions/:code/end` | End a session (host only) | 🔒 JWT Required |
+| `POST` | `/api/sessions/:code/lock` | Toggle session read-only lock | 🔒 JWT Required |
+| `POST` | `/api/sessions/:code/invite` | Send invitation by email | 🔒 JWT Required |
+| `GET` | `/api/sessions/my-invites` | Get pending invites for current user | 🔒 JWT Required |
+| `POST` | `/api/sessions/invites/:id/accept` | Accept a pending invite | 🔒 JWT Required |
+| `POST` | `/api/sessions/invites/:id/decline` | Decline a pending invite | 🔒 JWT Required |
 
 ### Projects — `/api/projects`
-| Method | Endpoint | Description | Auth |
+| Method | Endpoint | Description | Access |
 |:---:|:---|:---|:---:|
-| `GET` | `/api/projects` | List all accessible projects | ❌ |
-| `POST` | `/api/projects` | Create a new project | ✅ |
-| `GET` | `/api/projects/:id` | Get project details with source files | ❌ |
-| `DELETE` | `/api/projects/:id` | Delete a project (owner/admin) | ✅ |
-| `POST` | `/api/projects/:id/fork` | Fork a project into personal workspace | ✅ |
-| `POST` | `/api/projects/save-session` | Save a live session as a project | ✅ |
+| `GET` | `/api/projects` | List all accessible projects | 🌐 Public |
+| `POST` | `/api/projects` | Create a new project | 🔒 JWT Required |
+| `GET` | `/api/projects/:id` | Get project details with source files | 🌐 Public |
+| `DELETE` | `/api/projects/:id` | Delete a project (owner/admin) | 🔒 JWT Required |
+| `POST` | `/api/projects/:id/fork` | Fork a project into personal workspace | 🔒 JWT Required |
+| `POST` | `/api/projects/save-session` | Save a live session as a project | 🔒 JWT Required |
 
 ### Admin — `/api/admin` *(admin role required)*
-| Method | Endpoint | Description |
-|:---:|:---|:---|
-| `GET` | `/api/admin/stats` | System-wide telemetry and record counts |
-| `GET` | `/api/admin/users` | List all registered users |
-| `POST` | `/api/admin/users` | Create a user directly |
-| `PUT` | `/api/admin/users/:id/role` | Promote or demote a user's role |
-| `PUT` | `/api/admin/users/:id/status` | Suspend or activate an account |
-| `DELETE` | `/api/admin/users/:id` | Permanently delete a user |
-| `GET` | `/api/admin/sessions` | List all sessions |
-| `POST` | `/api/admin/sessions/:id/terminate` | Force-terminate a live session |
-| `DELETE` | `/api/admin/sessions/:id` | Delete a session record |
+| Method | Endpoint | Description | Access |
+|:---:|:---|:---|:---:|
+| `GET` | `/api/admin/stats` | System-wide telemetry and record counts | 👑 Admin JWT |
+| `GET` | `/api/admin/users` | List all registered users | 👑 Admin JWT |
+| `POST` | `/api/admin/users` | Create a user directly | 👑 Admin JWT |
+| `PUT` | `/api/admin/users/:id/role` | Promote or demote a user's role | 👑 Admin JWT |
+| `PUT` | `/api/admin/users/:id/status` | Suspend or activate an account | 👑 Admin JWT |
+| `DELETE` | `/api/admin/users/:id` | Permanently delete a user | 👑 Admin JWT |
+| `GET` | `/api/admin/sessions` | List all sessions | 👑 Admin JWT |
+| `POST` | `/api/admin/sessions/:id/terminate` | Force-terminate a live session | 👑 Admin JWT |
+| `DELETE` | `/api/admin/sessions/:id` | Delete a session record | 👑 Admin JWT |
 
 ---
 
